@@ -1,0 +1,26 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.bg1, .bg2 {
+	position: absolute;
+	z-index: -9001;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+}
+
+.off {
+	opacity: 0;
+	transition: opacity 4s;
+}
+
+.on {
+	opacity: 1;
+	transition: opacity 4s;
+}

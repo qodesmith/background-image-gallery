@@ -1,27 +1,22 @@
-body {
-	margin: 0;
-	padding: 0;
-	background-color: black;
-}
-
 .bg1, .bg2 {
 	position: absolute;
-	z-index: -9001;
-	width: 100%;
-	height: 100%;
+  top: 0;
+  left: 0;
+	z-index: -1;
+	width: 100vw;
+	height: 100vh;
 	position: fixed;
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
 	box-sizing: border-box;
+	transition: opacity 4s;
 }
 
 .off {
-	opacity: 0;
-	transition: opacity 4s;
+  opacity: 0;
 }
 
 .on {
 	opacity: 1;
-	transition: opacity 4s;
 }

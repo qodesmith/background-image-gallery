@@ -1,50 +1,57 @@
-// * This script requires jQuery.
-// Provide an array of photos to the function. Can be a mixture of relative and absolute urls.
-// CAUTION: if the absolute url fails, your background for that slide will be white.
+function bgImageGallery(array, selector1, selector2) {
+  // Stop the image gallery.
+  if(array === 'stop') {
+    clearInterval(window.bgInterval);
+    clearTimeout(window.bgTimeout);
+    return;
+  }
 
-// Example photo array.
-var photos = [
-	'http://goo.gl/VniNwE',
-	'http://goo.gl/a3vvho',
-	'http://goo.gl/PVqsfK'
-];
+  var photos = array.slice(); // Copy the array, preserving the original.
+  var bg1 = document.querySelector(selector1);
+  var bg2 = document.querySelector(selector2);
 
-function backgroundImageGallery(photos) {
-	var ranPhotos = []; // Holder array for randomizing the set of photos.
+  // Add on / off classes.
+  bg1.classList.add('off');
+  bg2.classList.add('on');
 
-	// Loop through our photos array in a randomized manner, pushing to our holder array.
-	while(photos.length > 0) {
-		var randomNum = Math.floor(Math.random() * photos.length);
-		ranPhotos.push(photos[randomNum]);
-		photos.splice(randomNum,1);
-	}
+  var ranPhotos = []; // Holder array for randomizing the set of photos.
 
-	var bg1showing = false;
-	var index = 2; // Counter always starts at the 3rd photo in the array.
+  // Loop through our photos array in a randomized manner, pushing to our holder array.
+  while(photos.length > 0) {
+    var num = Math.floor(Math.random() * photos.length);
+    ranPhotos.push(photos[num]);
+    photos.splice(num,1);
+  }
 
-	// Initial photos.
-	$('.bg1').css('background-image','url("'+ ranPhotos[0] +'")');
-	$('.bg2').css('background-image','url("'+ ranPhotos[1] +'")');
+  var bg1showing = false;
+  var i = ranPhotos.length;
 
-	setInterval(function() { // Swap the background image.
-		$('.bg1').toggleClass('on off');
-		$('.bg2').toggleClass('on off');
-		bg1showing = !bg1showing;
+  // Initial photos.
+  bg1.style.backgroundImage = 'url(' + ranPhotos[i - 2] + ')';
+  bg2.style.backgroundImage = 'url(' + ranPhotos[i - 1] + ')';
 
-		setTimeout(function() { // Change invisible div's background.
-			if(bg1showing) { // for even numbers...
-				$('.bg2').css('background-image','url("'+ ranPhotos[index] +'")');
-			} else {
-				$('.bg1').css('background-image','url("'+ ranPhotos[index] +'")');
-			}
-			index += 1;
+  // Swap the background image.
+  window.bgInterval = setInterval(function() { // Assign to the window object for the ability to cancel.
+    bg1.classList.toggle('on');
+    bg2.classList.toggle('on');
+    bg1.classList.toggle('off');
+    bg2.classList.toggle('off');
 
-			// Start the counter over if we've cycled through the photos.
-			if(index === ranPhotos.length){index = 0};
-		}, 5000); // Wait 5 seconds to change the invisible div's background (set to css transition time + 1 sec).
-	}, 10000); // Swap backgrounds every 10 seconds.
-};
+    bg1showing = !bg1showing;
 
-window.onload = function() {
-	backgroundImageGallery(photos);
+    // Change invisible div's background.
+    window.bgTimeout = setTimeout(function() { // Assign to the window object for the ability to cancel.
+      // Start the counter over if we've cycled through the photos.
+      if(i === ranPhotos.length) i = 0;
+
+      if(bg1showing) { // for even numbers...
+        bg2.style.backgroundImage = 'url(' + ranPhotos[i] + ')';
+      } else {
+        bg1.style.backgroundImage = 'url(' + ranPhotos[i] + ')';
+      }
+
+      i++;
+
+    }, 5000); // Wait time to change the invisible div's background (set to css transition time + 1 sec).
+  }, 10000); // Wait time to change the image.
 };

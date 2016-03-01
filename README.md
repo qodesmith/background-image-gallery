@@ -31,6 +31,7 @@ Provide an array of url's to images as strings.
 Provide any valid CSS selector as the 2nd and 3rd arguments.
 
 ## Stop feature
-If you would like to stop the gallery from changing the images, pass the string `'stop'` to the function:
+If you would like to stop the iteration of images, run the function again with a single `'stop'` argument:
 ```javascript
 bgImageGallery('stop');
+```

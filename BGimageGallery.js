@@ -1,4 +1,4 @@
-function bgImageGallery(array, selector1, selector2) {
+function bgImageGallery(array, selector1, selector2, credits) {
   // Stop the image gallery.
   if(array === 'stop') {
     clearInterval(window.bgInterval);
@@ -9,7 +9,14 @@ function bgImageGallery(array, selector1, selector2) {
   var photos = array.slice(); // Copy the array, preserving the original.
   var bg1 = document.querySelector(selector1);
   var bg2 = document.querySelector(selector2);
+  var credits = document.querySelector(credits);
+  var displayCredits = function(content) { //
+    if (!credits) {
+        return false;
+    }
 
+    credits.innerHTML = ( content ) ? content : '';
+  }
   // Add on / off classes.
   bg1.classList.add('off');
   bg2.classList.add('on');
@@ -27,8 +34,10 @@ function bgImageGallery(array, selector1, selector2) {
   var i = ranPhotos.length;
 
   // Initial photos.
-  bg1.style.backgroundImage = 'url(' + ranPhotos[i - 2] + ')';
-  bg2.style.backgroundImage = 'url(' + ranPhotos[i - 1] + ')';
+  bg1.style.backgroundImage = 'url(' + ranPhotos[i - 1].image + ')';
+  bg2.style.backgroundImage = 'url(' + ranPhotos[i - 2].image + ')';
+
+  displayCredits(ranPhotos[i - 2].credits);
 
   // Swap the background image.
   window.bgInterval = setInterval(function() { // Assign to the window object for the ability to cancel.
@@ -38,6 +47,7 @@ function bgImageGallery(array, selector1, selector2) {
     bg2.classList.toggle('off');
 
     bg1showing = !bg1showing;
+    displayCredits(ranPhotos[i - 1].credits);
 
     // Change invisible div's background.
     window.bgTimeout = setTimeout(function() { // Assign to the window object for the ability to cancel.
@@ -45,13 +55,15 @@ function bgImageGallery(array, selector1, selector2) {
       if(i === ranPhotos.length) i = 0;
 
       if(bg1showing) { // for even numbers...
-        bg2.style.backgroundImage = 'url(' + ranPhotos[i] + ')';
+        bg2.style.backgroundImage = 'url(' + ranPhotos[i].image + ')';
       } else {
-        bg1.style.backgroundImage = 'url(' + ranPhotos[i] + ')';
+        bg1.style.backgroundImage = 'url(' + ranPhotos[i].image + ')';
       }
 
       i++;
 
     }, 5000); // Wait time to change the invisible div's background (set to css transition time + 1 sec).
   }, 10000); // Wait time to change the image.
+
+
 };

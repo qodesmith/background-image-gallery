@@ -12,7 +12,7 @@ The CSS file will be located at `./node_modules/background-image-gallery/BGimage
 
 ### Manually
 
-Include `bgImageGallery.css` and `bgImageGallery.js` in your HTML file:
+Include `BGimageGallery.css` and `BGimageGallery.js` in your HTML file:
 
 ```html
 <head>

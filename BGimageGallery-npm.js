@@ -89,3 +89,5 @@ function bgImageGallery(images, containerSelector, time, random) {
     }, fade);
   }, time);
 }
+
+module.exports = bgImageGallery;

@@ -1,8 +1,8 @@
 // Example photo array.
-var photos = [
-  { image: 'http://goo.gl/VniNwE', credits: 'Photo by IJK' },
-  { image: 'http://goo.gl/a3vvho' },
-  { image: 'http://goo.gl/PVqsfK', credits: 'Photo by <a href="http://google.com">ABC</a>' }
+var images = [
+  { image: 'http://goo.gl/VniNwE', credits: 'Wolverine' },
+  { image: 'http://goo.gl/a3vvho', credits: 'Iron Man'},
+  { image: 'http://goo.gl/PVqsfK', credits: 'Photo by <a href="http://google.com">Hulk</a>' }
 ];
 
-bgImageGallery(photos, '.bg1', '.bg2', '.bg-credits');
+bgImageGallery(images, 'body', 4000, true);

@@ -1,8 +1,9 @@
-function bgImageGallery(images, containerSelector, time, random) {
+function bgImageGallery(photos, containerSelector, time, random) {
   var container = document.querySelector(containerSelector);
   var bg1 = document.createElement('div');
   var bg2 = document.createElement('div');
   var credits = document.createElement('div');
+  var images = photos.slice(); // Clone array so as not to manipulate the original object.
   var randomized = [];
   var fade = time / 2;
   var transitionTime = fade * .75 / 1000;

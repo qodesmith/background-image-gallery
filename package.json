@@ -1,0 +1,25 @@
+{
+  "name": "background-image-gallery",
+  "version": "1.0.3",
+  "description": "A JavaScript background gallery that fades from one image to the next.",
+  "main": "BGimageGallery-npm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qodesmith/background-image-gallery.git"
+  },
+  "keywords": [
+    "background",
+    "image",
+    "gallery",
+    "carousel"
+  ],
+  "author": "Qodesmith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qodesmith/background-image-gallery/issues"
+  },
+  "homepage": "https://github.com/qodesmith/background-image-gallery#readme"
+}

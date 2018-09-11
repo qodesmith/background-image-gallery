@@ -44,7 +44,8 @@ Is this magic?! All code is magic. The gallery simply creates a new `<div>` for 
 ## Usage
 
 ```javascript
-big({
+// Store in a variable to stop the gallery later on (see below).
+const gallery = big({
   photos: [{ image: 'photo1.jpg'}, { image: 'http://example.com/photo2.png'}],
   interval: 5000,
   fade: 3000,
@@ -87,15 +88,6 @@ If you provide `true`, your array will be randomized and everyone will think you
 
 Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? And who's gonna put away all those `<div>`'s this thing took out? Simple. The `big` function an object with 2 simply methods - `.stop` and `.clean`.
 
-#### .stop()
-
-Stops the gallery from running.
-
-#### .clean()
-
-Stops the gallery from running *and* removes the `<div>`'s that were added.
-
-Por exemplo:
 ```javascript
 const gallery = big({ ... })
 

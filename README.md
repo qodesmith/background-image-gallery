@@ -86,7 +86,7 @@ If you provide `true`, your array will be randomized and everyone will think you
 
 ### Stopping The Gallery / Cleanup
 
-Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? And who's gonna put away all those `<div>`'s this thing took out? Simple. The `big` function an object with 2 simply methods - `.stop` and `.clean`.
+Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? And who's gonna put away all those `<div>`'s this thing took out? Simple. The `big` function returns an object with 2 simple methods - `stop` and `clean`:
 
 ```javascript
 const gallery = big({ ... })

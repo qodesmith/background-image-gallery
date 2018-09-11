@@ -2,7 +2,7 @@
   "name": "background-image-gallery",
   "version": "1.0.3",
   "description": "A JavaScript background gallery that fades from one image to the next.",
-  "main": "BGimageGallery-npm.js",
+  "main": "./dist/big.js",
   "scripts": {
     "build": "webpack"
   },

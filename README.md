@@ -1,6 +1,6 @@
 # Background Image Gallery
 
-Fullscreen fading image goodness! This is a tiny JavaScript library for creating a fullscreen background image gallery where the images fade from one to the other. Made with nothing but *love* and *vanilla JavaScript* (redundant, I know).
+Fullscreen fading image goodness! This is a tiny (963 bytes gzipped!) JavaScript library for creating a fullscreen background image gallery where the images fade from one to the other. Made with nothing but *love* and *vanilla JavaScript* (redundant, I know).
 
 
 ## Installation

@@ -32,7 +32,7 @@ and include `bgImageGallery.js` just above your closing `</body>` tag...
 ### Via NPM
 
 ```
-npm install --save backgroung-image-gallery
+npm install --save background-image-gallery
 ```
 
 
@@ -85,7 +85,7 @@ If you provide `true`, your array will be randomized and everyone will think you
 
 ### Stopping The Gallery
 
-Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? Simply. The `bgImageGallery` function *returns* a function that, when called, stops the gallery.
+Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? Simple. The `bgImageGallery` function *returns* a function that, when called, stops the gallery.
 
 Por exemplo:
 ```javascript

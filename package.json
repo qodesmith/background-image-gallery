@@ -1,6 +1,6 @@
 {
   "name": "background-image-gallery",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "A JavaScript background gallery that fades from one image to the next.",
   "main": "./dist/big.js",
   "scripts": {

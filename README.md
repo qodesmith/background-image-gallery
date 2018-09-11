@@ -1,63 +1,101 @@
 # Background Image Gallery
-A JavaScript background gallery that fades from one image to the next. Options include randomizing the order of the supplied images and displaying credits to the image's author.
+
+Fullscreen fading image goodness! This is a tiny (963 bytes gzipped!) JavaScript library for creating a fullscreen background image gallery where the images fade from one to the other. Made with nothing but *love* and *vanilla JavaScript* (redundant, I know).
 
 
 ## Installation
 
-### via NPM
-
-`npm install background-image-gallery --save`
-
-The CSS file will be located at `./node_modules/background-image-gallery/BGimageGallery.css`.
-
 ### Manually
 
-Include `BGimageGallery.css` and `BGimageGallery.js` in your HTML file:
+Simply include `styles.css` in the `<head>`...
 
 ```html
 <head>
   ...
-  <link rel="stylesheet" href="bgImageGallery.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Via Unpkg CDN -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/background-image-gallery/dist/styles.css"> -->
 </head>
+```
+
+and include `big.js` just above your closing `</body>` tag...
+
+```html
 <body>
   ...
-  <script src="bgImageGallery.js"></script>
+  <script src="big.js"></script>
+  <!-- Via Unpkg CDN -->
+  <!-- <script src="https://unpkg.com/background-image-gallery/dist/big.js"></script> -->
 </body>
 ```
+
+### Via NPM
+
+```
+npm install background-image-gallery
+```
+
+
+## What It's Doing
+
+Is this magic?! All code is magic. The gallery simply creates a new `<div>` for each photo you supply, appends it to `document.body`, and applies some necessary inline CSS. A class will be toggled on each div to show/hide the images. The included CSS file takes care of the rest (such as full-screen coverage, width & heights, etc.).
 
 
 ## Usage
 
 ```javascript
-bgImageGallery(arrayOfImageObjects, containerSelector, speed, random);
+// Store in a variable to stop the gallery later on (see below).
+const gallery = big({
+  photos: [{ image: 'photo1.jpg'}, { image: 'http://example.com/photo2.png'}],
+  interval: 5000,
+  fade: 3000,
+  random: true
+})
 ```
 
-`bgImageGallery` can take up to four arguments, the fourth being optional:
+### Options
 
-1. `arrayOfImageObjects`: an array of objects, each containing at least an `image` property with a url as a string for the value: `{image: 'some/url/here.jpg'}`. If you pass in a `credits` property, a small credit in the lower right-hand corner of the screen will show the contents you provide. You _can_ provide html here so as to link to the author's site, etc.
+The gallery takes an `{ options }` object as its only argument:
 
-2. `containerSelector`: any valid CSS selector as a string for where you would like the gallery to live. For example, providing `body` will have the gallery create its elements and append them to the body. For a full-page gallery, set the container's width & height to 100vw and 100vh respectively in your CSS.
+#### photos
 
-3. `speed`: a value in milliseconds representing how long each image will be shown before moving on to the next. The gallery does the fading calculations on the fly based on the number you provide.
+Supply an array of objects that take the shape of `{ image: <file/location>.png }`.
 
-4. `random`: _(optional)_ a value of `true` will cause the supplied array of images to be randomized.
-
-
-### Example:
+The image locations can be local to wherever you're running the code or out there on the interwebs:
 
 ```javascript
-var images = [
-  {image: 'http://example.com/images/01.png'},
-  {image: 'images/02.png', credits: 'Photo by Yours Truly'},
-  {image: 'images/03.png', credits: 'Photo by <a href="http://me.com">Me</a>'
-];
-
-bgImageGallery(images, 'body', 8000, true);
+[
+  { image: './location/to/local/image.png' },
+  { image: 'https://i.imgur.com/M0IIqJ2.jpg' }
+]
 ```
 
-## 'killGallery' Feature
-If you would like to stop the iteration of images, simply fire off a `killGallery` event from the body. Keep in mind that if you have multiple galleries on a page, they will all be killed with this single event:
+Why isn't it an array of just file locations, you ask? Because I plan on adding other features that will require objects to be used instead... that's why.
+
+#### interval
+
+How long do you want each photo to show before fading into the next? Tell me in milliseconds.
+
+#### fade
+
+How fast do you want one image to fade into the next? Again, milliseconds please.
+
+#### random
+
+If you provide `true`, your array will be randomized and everyone will think you're awesome.
+
+### Stopping The Gallery / Cleanup
+
+Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? And who's gonna put away all those `<div>`'s this thing took out? Simple. The `big` function returns an object with 2 simple methods - `stop` and `clean`:
 
 ```javascript
-document.body.dispatchEvent(new Event('killGallery'));
+const gallery = big({ ... })
+
+/* Time passes by... */
+
+// The gallery stops but the images are still in the DOM.
+gallery.stop()
+
+// The gallery stops and the images are removed from the DOM.
+gallery.clean()
 ```

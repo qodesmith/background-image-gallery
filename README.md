@@ -14,37 +14,37 @@ Simply include `styles.css` in the `<head>`...
   ...
   <link rel="stylesheet" href="styles.css">
   <!-- Via Unpkg CDN -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/background-image-gallery/styles.css"> -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/background-image-gallery/dist/styles.css"> -->
 </head>
 ```
 
-and include `bgImageGallery.js` just above your closing `</body>` tag...
+and include `big.js` just above your closing `</body>` tag...
 
 ```html
 <body>
   ...
-  <script src="bgImageGallery.js"></script>
+  <script src="big.js"></script>
   <!-- Via Unpkg CDN -->
-  <!-- <script src="https://unpkg.com/background-image-gallery/bgImageGallery.js"></script> -->
+  <!-- <script src="https://unpkg.com/background-image-gallery/dist/big.js"></script> -->
 </body>
 ```
 
 ### Via NPM
 
 ```
-npm install --save background-image-gallery
+npm install background-image-gallery
 ```
 
 
 ## What It's Doing
 
-Is this magic?! All code is magic. The gallery simply creates a new `<div>` for each photo you supply, appends it to `document.body`, and applies some necessary inline CSS. A class will be toggled on each div to show/hide the images. The included CSS takes care of the rest (such as full-screen coverage, width & heights, etc.).
+Is this magic?! All code is magic. The gallery simply creates a new `<div>` for each photo you supply, appends it to `document.body`, and applies some necessary inline CSS. A class will be toggled on each div to show/hide the images. The included CSS file takes care of the rest (such as full-screen coverage, width & heights, etc.).
 
 
 ## Usage
 
 ```javascript
-bgImageGallery({
+big({
   photos: [{ image: 'photo1.jpg'}, { image: 'http://example.com/photo2.png'}],
   interval: 5000,
   fade: 3000,
@@ -60,7 +60,7 @@ The gallery takes an `{ options }` object as its only argument:
 
 Supply an array of objects that take the shape of `{ image: <file/location>.png }`.
 
-The image locations can be local to wherever you're running the code or out there in interwebs:
+The image locations can be local to wherever you're running the code or out there on the interwebs:
 
 ```javascript
 [
@@ -83,15 +83,27 @@ How fast do you want one image to fade into the next? Again, milliseconds please
 
 If you provide `true`, your array will be randomized and everyone will think you're awesome.
 
-### Stopping The Gallery
+### Stopping The Gallery / Cleanup
 
-Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? Simple. The `bgImageGallery` function *returns* a function that, when called, stops the gallery.
+Ok, so you've got the gallery running on the page but enough's enough. How do we stop this thing? And who's gonna put away all those `<div>`'s this thing took out? Simple. The `big` function an object with 2 simply methods - `.stop` and `.clean`.
+
+#### .stop()
+
+Stops the gallery from running.
+
+#### .clean()
+
+Stops the gallery from running *and* removes the `<div>`'s that were added.
 
 Por exemplo:
 ```javascript
-const stopGallery = bgImageGallery({ ... })
+const gallery = big({ ... })
 
 /* Time passes by... */
 
-stopGallery() // And there you have it folks. End of the line.
+// The gallery stops but the images are still in the DOM.
+gallery.stop()
+
+// The gallery stops and the images are removed from the DOM.
+gallery.clean()
 ```
